@@ -4,6 +4,16 @@
 
 {% block page_content %}
 <div class="page-header">
-    <h1>Hello World!</h1>
+    {% if current_user.is_authenticated %}
+    <h1>Welcome back to LeashMate {{ current_user.username }}!</h1>
+    {% else %}
+    <h1>Welcome to LeashMate</h1>
+    {% endif %}
+    <p> LeashMate is dedicated to matching the right owners with the right rescue dogs.
+    	Our goal is to help you find your perfect leash mate and reduce adoptable re-homing.
+	
+	Use our site to search your local area for dogs that are looking for homes. Currently
+	we source from over X agencies and shelters on the West Coast.
+    </P>
 </div>
 {% endblock %}

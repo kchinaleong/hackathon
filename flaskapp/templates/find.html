@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Find Adoptables!{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Find Adoptables!</h1>
+</div>
+
+<div class="col-md-4">
+    {{form.s1}} {{ form.s1.label}}
+</div>
+{% endblock %}

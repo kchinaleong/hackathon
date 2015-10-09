@@ -1,7 +1,6 @@
-{% extends "bootstrap/base.html" %}
-
+{%extends "bootstrap/base.html" %}
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
 {% block title %}Adopt Today!{% endblock %}
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
 {% block navbar %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/nav-bar-custom.css') }}">
@@ -10,16 +9,17 @@
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
+                <span class="icon-bar" ></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Adopt!</a>
+	    <a href="/"><img src="static/images/leashmate-nav.png"/></a> 
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-				<li><a href="{{ url_for('profile')}}">Profile</a><li>
+		<li><a href="/"><span class="glyphicon glyphicon-home"></span/> Home</a><li>
+		<li><a href="{{ url_for('profile')}}"><span class="glyphicon glyphicon-user"></span/> Profile</a><li>
+		<li><a href="{{ url_for('find')}}"><span class="glyphicon glyphicon-search"></span/> Find Adoptables!</a><li>
             </ul>
 			<ul class="nav navbar-nav navbar-right">i
 				{% if current_user.is_authenticated %}
