@@ -5,8 +5,9 @@ from flaskapp import app
 from .. import db
 from ..models import User
 #from ..email import send_email
-from .auth_forms import LoginForm, RegistrationForm, ChangePasswordForm,\
-    PasswordResetRequestForm, PasswordResetForm, ChangeEmailForm
+#from .auth_forms import LoginForm, RegistrationForm, ChangePasswordForm,\
+#    PasswordResetRequestForm, PasswordResetForm, ChangeEmailForm
+from .auth_forms import LoginForm, RegistrationForm
 
 @app.route('/unconfirmed')
 def unconfirmed():
@@ -24,7 +25,7 @@ def login():
             login_user(user, form.remember_me.data)
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('Invalid username or password.')
-    return render_template('auth/login.html', form=form)
+    return render_template('login.html', form=form)
 
 
 @app.route('/logout')
@@ -48,8 +49,8 @@ def register():
 #       send_email(user.email, 'Confirm Your Account',
 #                 'auth/email/confirm', user=user, token=token)
 #       flash('A confirmation email has been sent to you by email.')
-        return redirect(url_for('auth.login'))
-    return render_template('auth/register.html', form=form)
+        return redirect(url_for('login'))
+    return render_template('register.html', form=form)
 
 
 @app.route('/confirm/<token>')
