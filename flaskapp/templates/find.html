@@ -8,7 +8,61 @@
     <h1>Find Adoptables!</h1>
 </div>
 
-<div class="col-md-4">
-    {{form.s1}} {{ form.s1.label}}
+<form action="" method="post">
+{{ form.hidden_tag() }}
+<div class="col-md-6">
+    <h4>Age: <small>(check all that apply)</small></h4>
+    	<ul class="list-unstyled" style="padding-left:30px">
+            <li>{{ form.age1 }} {{ form.age1.label }}</li>
+            <li>{{ form.age2 }} {{ form.age2.label }}</li>
+            <li>{{ form.age3 }} {{ form.age3.label }}</li>
+        </ul>
+    <h4>Size: <small>(check all that apply)</small></h4>
+    	<ul class="list-unstyled" style="padding-left:30px">
+            <li>{{ form.size1 }} {{ form.size1.label }}</li>
+            <li>{{ form.size2 }} {{ form.size2.label }}</li>
+            <li>{{ form.size3 }} {{ form.size3.label }}</li>
+        </ul>
+    <h4>What energy level would best suit you? <small>(check all that apply)</small></h4>
+    	<ul class="list-unstyled" style="padding-left:30px">
+            <li>{{ form.low }} {{ form.low.label }}</li>
+            <li>{{ form.normal }} {{ form.normal.label }}</li>
+            <li>{{ form.high }} {{ form.high.label }}</li>
+        </ul>
+    <h4>What level of dog experience do you have?</h4>
+       <ul class="list-unstyled" style="padding-left:30px">
+        {% for choice in form.experience %}
+            <li>{{choice}} {{choice.label}}</li>
+        {% endfor %}
+        </ul>
+    <h4>Which best describes your home?</h4>
+        <ul class="list-unstyled" style="padding-left:30px">
+        {% for choice in form.home %}
+            <li>{{choice}} {{choice.label}}</li>
+        {% endfor %}
+        </ul>
+    <h4>Would you be willing to take on a dog with health issues?</h4>
+        {% for choice in form.health %}
+            <span style="padding-left:30px">{{choice}} {{choice.label}}</span>
+        {% endfor %}
+    <h4>Would you be willing to take on a dog with behavioral issues?</h4>
+        {% for choice in form.behavior %}
+            <span style="padding-left:30px">{{choice}} {{choice.label}}</span>
+        {% endfor %}
+    <h4>Do you have children?<small> (12 and under) </small></h4>
+        {% for choice in form.children %}
+            <span style="padding-left:30px">{{choice}} {{choice.label}}</span>
+        {% endfor %}
+     <h4>Do you have other pets?</h4>
+        {% for choice in form.pets %}
+            <span style="padding-left:30px">{{choice}} {{choice.label}}</span>
+        {% endfor %}
+     {% if current_user.is_authenticated %}
+        {{ form.save_to_profile }} Save your search criteria to your profile!
+     {% endif %}
+     <br><br>
+     {{ form.submit }}
+     <br><br>
 </div>
+</form>
 {% endblock %}
