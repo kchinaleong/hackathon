@@ -16,11 +16,6 @@ def find():
 	 """
         flash("db stuff, form submitted, search!")
         return redirect(url_for('home'))
-    print(dir(form))
-    print(form.errors)
-    flash("form not validated")
-    if form.is_submitted():
-        flash("form is submitted")
     return render_template('find.html', form=form)
 
 class CriteriaForm(Form):

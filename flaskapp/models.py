@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
+    matches = db.relationship('Matches', backref='user')
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -104,3 +105,34 @@ login_manager.anonymous_user = AnonymousUser
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+class Agency(db.Model):
+    __tablename__ = 'agency'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), unique=True)
+    address = db.Column(db.String(128))
+    phone = db.Column(db.String(28))
+    email = db.Column(db.String(28))
+    adoptables = db.relationship('Adoptable', backref='agency')
+
+    def __repr__(self):
+        return '<Agency %r>' % self.name
+
+class Adoptable(db.Model):
+    __tablename__ = 'adopt'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    desc = db.Column(db.Text())
+    agency_id = db.Column(db.Integer, db.ForeignKey('agency.id'))
+
+    def __repr__(self):
+        return '<Adoptable %r>' % self.name
+
+class Matches(db.Model):
+    __tablename__ = 'matches'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    adopt_id = db.Column(db.Integer, db.ForeignKey('adopt.id'))
+
+
+        

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Find Adoptables!{% endblock %}
+{% block title %}Find Adoptables! - Fill out search criteria{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
@@ -58,7 +58,8 @@
             <span style="padding-left:30px">{{choice}} {{choice.label}}</span>
         {% endfor %}
      {% if current_user.is_authenticated %}
-        {{ form.save_to_profile }} Save your search criteria to your profile!
+     <br><br>
+     {{ form.save }} Save your search criteria to your profile!
      {% endif %}
      <br><br>
      {{ form.submit }}
