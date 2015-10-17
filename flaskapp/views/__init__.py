@@ -5,4 +5,5 @@ __all__ = [
     "auth_views",
     "find",
     "results",
+    "favorites",
 ]

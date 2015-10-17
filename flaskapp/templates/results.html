@@ -1,42 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Results{% endblock %}
+{% block title %}Matches{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
-    <h1>Results</h1>
+    <h1>Matches</h1>
 </div>
 
 {% for agency, pup in results %}
-    <ul>
-        <li> Agency Name: {{agency.name}} </li>
-        <li> Agency address: {{agency.address}} </li>
-        <li> Dog Name: {{pup.name}} </li>
-        <li> Dog Description: {{pup.desc}} </li>
-    </ul>
-{% endfor %}
-<table>
-{% for agency, pup in results %}
-<tr>
-    <td style="width: 25%"><img src="{{url_for('static', filename='images/agency/icon_%s.jpeg' % agency.id)}}">
-    <td><h4>{{ pup.name}}</h4</td>
-    <td rowspan="2">{{ pup.desc }} </td>
-    <td>
-        <ul style="list-style-type:none">
-            <li><strong>{{agency.name}}</strong></li>
-            <li>{{ agency.address }} </li>
-            <li>{{ agency.phone }} </li>
-            <li>{{ agency.email }} </li>
-        </ul>
-    <td>
- <tr>
-{% endfor %}
-</table>
-
-{% for agency, pup in results %}
-<div class="row" style="margin-top:20px;"> 
-    <div class="col-md-2"><img height="200px"src="{{url_for('static', filename='images/pups/pic_%s.jpeg' % pup.id)}}"></div>
-    <div class="col-md-3">
+<div class="row" style="padding-bottom:20px; padding-top:20px; border-bottom:20px; border-bottom: 1px solid #F1A000;">
+    <div class="col-md-2"><img height="200px" style="max-width:175px" src="{{url_for('static', filename='images/pups/pic_%s.jpeg' % pup.id)}}"></div>
+    <div class="col-md-5">
         <div class="row">
             <div class="col-md-12 text-left"><h4>{{ pup.name}}</h4></div>
         </div> 
@@ -53,7 +27,7 @@
             <li>{{ agency.email }} </li>
         </ul>
     </div>
-    <div class="col-md-2 text-center"><strong>Save to Matches!</strong><br><br>
+    <div class="col-md-2 text-center"><strong>Save to Favorites!</strong><br><br>
         <input type="image" width="45%" id="match" src="{{url_for('static', filename='images/buttons/heart.png')}}">
     </div>
 </div>

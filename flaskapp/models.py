@@ -113,6 +113,7 @@ class Agency(db.Model):
     address = db.Column(db.String(128))
     phone = db.Column(db.String(28))
     email = db.Column(db.String(28))
+    website = db.Column(db.String(64))
     adoptables = db.relationship('Adoptable', backref='agency')
 
     def __repr__(self):

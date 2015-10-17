@@ -14,8 +14,10 @@ def find():
 	if form.save_to_profile.data
 	    save form criteria to user profile if user is signed in
 	 """
+         
         flash("db stuff, form submitted, search!")
-        return redirect(url_for('home'))
+        return redirect(url_for('results'))
+    print form.errors
     return render_template('find.html', form=form)
 
 class CriteriaForm(Form):
@@ -28,11 +30,10 @@ class CriteriaForm(Form):
     low = BooleanField('Low')
     normal = BooleanField('Normal')
     high = BooleanField('High')
-    health = RadioField('Health', validators=[Required()], choices=[('1','Yes'),(0,'No')])
-    behavior = RadioField('Behavior', validators=[Required()],choices=[('1','Yes'),(0,'No')])
-    children = RadioField('Children', validators=[Required()],choices=[('1','Yes'),(0,'No')])	
-    pets = RadioField('Pets', validators=[Required()],choices=[('1','Yes'),(0,'No')])
+    health = RadioField('Health', validators=[Required()], choices=[('1','Yes'),('0','No')])
+    behavior = RadioField('Behavior', validators=[Required()],choices=[('1','Yes'),('0','No')])
+    children = RadioField('Children', validators=[Required()],choices=[('1','Yes'),('0','No')])	
+    pets = RadioField('Pets', validators=[Required()],choices=[('1','Yes'),('0','No')])
     home = RadioField('Home', validators=[Required()],choices=[('1','Apartment'),('2','House with yard'),('3', 'Acreage')])
     experience = RadioField('Experience', validators=[Required()],choices=[('1','Little'),('3','Medium'),('3', 'High')])
     save = BooleanField('save_to_profile')
-    submit = SubmitField('Find Adoptables!')
