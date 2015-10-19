@@ -9,7 +9,7 @@
 
 {% for agency, pup in results %}
 <div class="row" style="padding-bottom:20px; padding-top:20px; border-bottom:20px; border-bottom: 1px solid #F1A000;">
-    <div class="col-md-2"><img height="200px" style="max-width:175px" src="{{url_for('static', filename='images/pups/pic_%s.jpeg' % pup.id)}}"></div>
+    <div class="col-md-2"><img style="max-width:175px; max-height=200px;" src="{{url_for('static', filename='images/pups/pic_%s.jpeg' % pup.id)}}"></div>
     <div class="col-md-5">
         <div class="row">
             <div class="col-md-12 text-left"><h4>{{ pup.name}}</h4></div>
@@ -21,14 +21,19 @@
     <div class="col-md-1"><img src="{{url_for('static', filename='images/agency/icon_%s.jpeg' % agency.id)}}"></div>
     <div class="col-md-2 text-left">
         <ul style="list-style-type:none">
-            <li><strong>{{agency.name}}</strong></li>
+            <li><strong>{{ agency.name }}</strong></li>
             <li>{{ agency.address }} </li>
-            <li>{{ agency.phone }} </li>
-            <li>{{ agency.email }} </li>
+            {% if not agency.phone==None %}
+                <li>{{ agency.phone }} </li>
+            {% endif %}
+            {% if not agency.email==None %}
+                <li>{{ agency.email }} </li>
+            {% endif %}
+            <li><a href="{{ agency.website }}">{{ agency.website}}</a></li>
         </ul>
     </div>
     <div class="col-md-2 text-center"><strong>Save to Favorites!</strong><br><br>
-        <input type="image" width="45%" id="match" src="{{url_for('static', filename='images/buttons/heart.png')}}">
+        <input type="image" width="75px" id="match" src="{{url_for('static', filename='images/buttons/heart.png')}}">
     </div>
 </div>
 {% endfor %}
