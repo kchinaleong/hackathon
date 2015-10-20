@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), unique=True, index=True)
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
+    profile_id = db.Column(db.Integer)
     matches = db.relationship('Matches', backref='user')
 
     def __init__(self, **kwargs):

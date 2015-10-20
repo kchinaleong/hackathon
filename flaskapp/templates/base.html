@@ -21,7 +21,7 @@
 		        {% if current_user.is_authenticated %}
 		        <li><a href="{{ url_for('profile')}}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 		        {% endif %}
-                <li><a href="{{ url_for('find')}}"><span class="glyphicon glyphicon-search"></span> Find Adoptables!</a></li>
+                <li><a href="{{ url_for('find')}}"><span class="glyphicon glyphicon-search"></span> Matches</a></li>
                 <li><a href="{{ url_for('favorites')}}"><span class="glyphicon glyphicon-heart"></span> Favorites</a></li>
             </ul>
 			<ul class="nav navbar-nav navbar-right">

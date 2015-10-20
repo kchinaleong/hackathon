@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Welcome{% endblock %}
 
 {% block page_content %}
+
 <div class="page-header">
     <h1>Login</h1>
 </div>
 <div class="col-md-6">
     {{ wtf.quick_form(form) }}
 </div>
+
+{% if current_user.is_anaymous %}
 <div class="col-md-6">
     <p><h2>New user?</h2></p>
     <p>Register now to create your own profile to save your search criteria and favorite matches!</p>
     <a href="{{ url_for('register') }}">Click here to register</a>!</p>
 </div>
+{% endif %}
 {% endblock %}
