@@ -10,6 +10,9 @@ from ..models import User
 @app.route('/find', methods=['GET', 'POST'])
 def find():
     """ Search page """
+    referrer =  request.referrer.rsplit('/',1)[-1]
+    if referrer == ('login'):
+        return redirect(url_for('home'))
     profile_set = db.session.query(User.profile_id).filter(User.id==current_user.get_id()).scalar()
     if profile_set is not None:
         return redirect(url_for('results'))
@@ -23,7 +26,6 @@ def find():
             current_user.profile_id=current_user.get_id()
             db.session.commit()
         return redirect(url_for('results'))
-    print form.errors
     return render_template('find.html', form=form)
 
 class CriteriaForm(Form):

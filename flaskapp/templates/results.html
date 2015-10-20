@@ -1,14 +1,13 @@
 {% extends "base.html" %}
-
 {% block title %}Matches{% endblock %}
 
 {% block page_content %}
-<div class="page-header">
+
+<div class="page-heiader">
     <h1>Matches</h1>
 </div>
 
 {% for agency, pup in results %}
-<form action="add" method="post">
 <div class="row" style="padding-bottom:20px; padding-top:20px; border-bottom:20px; border-bottom: 1px solid #F1A000;">
     <div class="col-md-2"><img style="max-width:175px; max-height=200px;" src="{{url_for('static', filename='images/pups/pic_%s.jpeg' % pup.id)}}"></div>
     <div class="col-md-5">
@@ -33,11 +32,36 @@
             <li><a href="{{ agency.website }}">{{ agency.website}}</a></li>
         </ul>
     </div>
-    <input type="hidden" name="pup_id" value={{ pup.id }}>
     <div class="col-md-2 text-center"><strong>Save to Favorites!</strong><br><br>
-        <input type="image" width="75px" id="save" src="{{url_for('static', filename='images/buttons/heart.png')}}">
+        <img width="75px" class="save_icon" data-pup="{{pup.id}}" data-agency="{{agency.id}}" src="{{url_for('static', filename='images/buttons/heart.png')}}">
     </div>
 </div>
 </form>
 {% endfor %}
 {% endblock %}
+
+{% block scripts %}
+{{super()}}
+
+<script type="text/javascript">
+
+var addToFavorites = function(e){
+    var item = e.target;
+    var pup_id = item.dataset.pup;
+    var agency_id = item.dataset.agency;
+    item.src ="static/images/buttons/heart-yellow.png" 
+    
+
+
+}
+
+var save_icons = document.getElementsByClassName("save_icon");
+for (var i = 0, icon; icon = save_icons[i]; i++){
+    icon.addEventListener("click", addToFavorites);
+}
+
+</script>
+{% endblock %}
+
+
+

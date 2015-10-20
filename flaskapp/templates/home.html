@@ -11,14 +11,24 @@
     <h1>Welcome to LeashMate</h1>
     {% endif %}
 </div> 
-
-   <p> LeashMate is dedicated to matching the right owners with the right rescue dogs.
-    	Our goal is to help you find your perfect leash mate and reduce adoptable re-homing.
-	
-	Use our site to search your local area for dogs that are looking for homes. Currently
-	we source from over X agencies and shelters on the West Coast.
-</p>
-
+<p>
+LeashMate is dedicated to matching dog seekers with the perfect rescue dog. Our goal is to find rescue dogs their forever homes and reduce the number of dogs ending up in shelters or being re-homed due to incompatibility. Use our site to search your local area for dogs that are looking for homes. Currently we source from over 8 rescue agencies and shelters on the West Coast of B.C.
+</p></br>
+<div class="row">
+<div class="col-md-3">
+    <img width="180px" src="{{url_for('static', filename='images/welcome/welcome_1.png')}}">
+</div>
+<div class="col-md-3">
+    <img width="180px" src="{{url_for('static', filename='images/welcome/welcome_2.png')}}">
+</div>
+<div class="col-md-3">
+    <img width="180px" src="{{url_for('static', filename='images/welcome/welcome_3.png')}}">
+</div>
+<div class="col-md-3">
+    <img width="180px" src="{{url_for('static', filename='images/welcome/welcome_4.png')}}">
+</div>
+</div>
+<br>
 {%if not current_user.is_authenticated %}
 <div class="page-header">
     <h1>Login</h1>
@@ -36,3 +46,6 @@
 <a class="btn btn-primary btn-lg" href="{{url_for('results')}}">Review Matches</a>
 {% endif %}
 {% endblock %}
+
+
+

@@ -14,5 +14,5 @@ def add_to_favorites():
     form = request.form
     print form['pup_id']
     #if form.is_submitted()
-    return redirect(url_for('results'))
-
+    #return redirect(url_for('results'))
+    return "",201
