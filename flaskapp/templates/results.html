@@ -33,9 +33,9 @@
             <li><a href="{{ agency.website }}">{{ agency.website}}</a></li>
         </ul>
     </div>
-    <input type="hidden" id="adoptable_id" value={{ pup.id }}>
+    <input type="hidden" name="pup_id" value={{ pup.id }}>
     <div class="col-md-2 text-center"><strong>Save to Favorites!</strong><br><br>
-        <input type="submit" width="75px" id="save" src="{{url_for('static', filename='images/buttons/heart.png')}}">
+        <input type="image" width="75px" id="save" src="{{url_for('static', filename='images/buttons/heart.png')}}">
     </div>
 </div>
 </form>
