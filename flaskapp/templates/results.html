@@ -3,7 +3,7 @@
 
 {% block page_content %}
 
-<div class="page-heiader">
+<div class="page-header">
     <h1>Matches</h1>
 </div>
 
@@ -29,11 +29,11 @@
             {% if not agency.email==None %}
                 <li>{{ agency.email }} </li>
             {% endif %}
-            <li><a href="{{ agency.website }}">{{ agency.website}}</a></li>
+            <li><a href="http://{{ agency.website }}">{{ agency.website}}</a></li>
         </ul>
     </div>
     <div class="col-md-2 text-center"><strong>Save to Favorites!</strong><br><br>
-        <img width="75px" class="save_icon" data-pup="{{pup.id}}" data-agency="{{agency.id}}" src="{{url_for('static', filename='images/buttons/heart.png')}}">
+        <img width="75px" class="save_icon" data-pup="{{pup.id}}" src="{{url_for('static', filename='images/buttons/heart.png')}}">
     </div>
 </div>
 </form>
@@ -48,11 +48,14 @@
 var addToFavorites = function(e){
     var item = e.target;
     var pup_id = item.dataset.pup;
-    var agency_id = item.dataset.agency;
     item.src ="static/images/buttons/heart-yellow.png" 
     
-
-
+    //Create post request to add favorite to db
+    var http = new XMLHttpRequest();
+    http.open("POST", "add", true);
+    var params = "pup_id="+pup_id;
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(params);
 }
 
 var save_icons = document.getElementsByClassName("save_icon");

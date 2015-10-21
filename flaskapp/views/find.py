@@ -11,9 +11,9 @@ from ..models import User
 def find():
     """ Search page """
     referrer =  request.referrer.rsplit('/',1)[-1]
-    if referrer == ('login'):
-        return redirect(url_for('home'))
     profile_set = db.session.query(User.profile_id).filter(User.id==current_user.get_id()).scalar()
+    if referrer == ('login') and profile_set:
+       return redirect(url_for('home'))
     if profile_set is not None:
         return redirect(url_for('results'))
     form = CriteriaForm()

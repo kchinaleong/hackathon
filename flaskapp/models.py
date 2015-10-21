@@ -126,6 +126,7 @@ class Adoptable(db.Model):
     name = db.Column(db.String(64))
     desc = db.Column(db.Text())
     agency_id = db.Column(db.Integer, db.ForeignKey('agency.id'))
+    match = db.relationship('Matches', backref='adoptable')
 
     def __repr__(self):
         return '<Adoptable %r>' % self.name
@@ -135,6 +136,6 @@ class Matches(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     adopt_id = db.Column(db.Integer, db.ForeignKey('adopt.id'))
-
-
         
+    def __repr__(self):
+        return 'user: %r adopt: %r' % (self.user_id,self.adopt_id)

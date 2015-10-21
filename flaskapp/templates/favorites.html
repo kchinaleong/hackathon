@@ -15,4 +15,36 @@ Here is a list of your favorite matches!
 {% endif %}
 </h3>
 
+{% for agency, pup in results %}
+<div class="row" style="padding-bottom:20px; padding-top:20px; border-bottom:20px; border-bottom: 1px solid #F1A000;">
+    <div class="col-md-2"><img style="max-width:175px; max-height=200px;" src="{{url_for('static', filename='images/pups/pic_%s.jpeg' % pup.id)}}"></div>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12 text-left"><h4>{{ pup.name}}</h4></div>
+        </div> 
+        <div class="row">
+            <div class="col-md-12 text-left">{{ pup.desc }} </div>
+        </div>
+    </div>
+    <div class="col-md-1"><img src="{{url_for('static', filename='images/agency/icon_%s.jpeg' % agency.id)}}"></div>
+    <div class="col-md-2 text-left">
+        <ul style="list-style-type:none">
+            <li><strong>{{ agency.name }}</strong></li>
+            <li>{{ agency.address }} </li>
+            {% if not agency.phone==None %}
+                <li>{{ agency.phone }} </li>
+            {% endif %}
+            {% if not agency.email==None %}
+                <li>{{ agency.email }} </li>
+            {% endif %}
+            <li><a href="http://{{ agency.website }}">{{ agency.website}}</a></li>
+        </ul>
+    </div>
+</div>
+</form>
+{% endfor %}
 {% endblock %}
+
+
+
+
